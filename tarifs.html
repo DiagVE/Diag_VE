@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarifs & Services - DiagVE.Mobile</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .bg-dark-blue { background-color: #0A192F; }
-    .bg-card-blue { background-color: #112240; }
+    /* Vrai dégradé de fond global fluide et profond (Bleu nuit pro vers teintes lumineuses électriques) */
+    body {
+      background: linear-gradient(135deg, #07111E 0%, #0A1C33 50%, #062232 100%);
+      background-attachment: fixed;
+      color: #F1F5F9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    
+    .bg-card-dark { background-color: rgba(15, 31, 56, 0.9); backdrop-filter: blur(10px); }
     .text-hv-yellow { color: #EAB308; }
     .bg-hv-yellow { background-color: #EAB308; }
     .border-hv-yellow { border-color: #EAB308; }
@@ -33,50 +42,62 @@
     .tab-panel.active { display: block; }
   </style>
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0A192F">
+  <meta name="theme-color" content="#07111E">
+  <link rel="icon" type="image/png" href="icon.png">
 </head>
-<body class="bg-dark-blue text-slate-100 min-h-screen flex flex-col font-sans">
+<body class="selection:bg-amber-400 selection:text-slate-900">
 
-  <!-- Header / Navigation -->
-  <header class="bg-card-blue border-b border-slate-800 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <span class="text-2xl font-black text-hv-yellow">⚡ DiagVE</span>
-        <span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-hv-yellow font-bold border border-amber-400/30">MOBILE</span>
+  <!-- Header / Navigation harmonisé avec l'accueil -->
+  <header class="bg-[#0F1F38]/90 backdrop-blur border-b border-slate-800/80 sticky top-0 z-50 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="relative flex items-center justify-center">
+          <img src="icon.png" alt="Logo DiagVE.Mobile" class="w-10 h-10 rounded-xl border border-slate-700 shadow-sm object-cover">
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xl font-black text-white tracking-tight">DiagVE<span class="text-amber-400">.Mobile</span></span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-amber-400/15 text-amber-400 font-black border border-amber-400/30 tracking-wider">VE / HT</span>
+          </div>
+          <p class="text-[9px] text-emerald-400 font-bold uppercase tracking-widest hidden sm:block">Diagnostic Mobile & Sécurité High-Tech</p>
+        </div>
       </div>
-      <nav class="flex space-x-6 text-sm font-semibold">
+      
+      <nav class="flex items-center space-x-4 text-xs sm:text-sm font-semibold">
         <a href="index.html" class="text-slate-300 hover:text-white transition">Accueil</a>
-        <a href="tarifs.html" class="text-hv-yellow border-b-2 border-hv-yellow pb-1">Tarifs & Services</a>
-        <a href="contact.html" class="text-slate-300 hover:text-white transition">Contact / RDV</a>
+        <a href="tarifs.html" class="text-amber-400 border-b-2 border-amber-400 pb-0.5 font-bold">Tarifs</a>
+        <a href="contact.html" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black px-3.5 py-1.5 rounded-xl text-xs transition shadow-sm flex items-center gap-1">
+          <span>⚡</span> Contact
+        </a>
       </nav>
     </div>
   </header>
 
-  <main class="flex-grow max-w-6xl mx-auto px-4 py-10">
+  <main class="flex-grow max-w-6xl mx-auto px-4 py-10 w-full">
     <div class="text-center mb-8">
-      <h1 class="text-3xl font-black text-white">Nos Tarifs & Prestations de Diagnostic</h1>
-      <p class="text-slate-300 mt-2 text-sm">Déplacement inclus dans un rayon de 15 km autour de Mantes-la-Jolie / Mantes-la-Ville.</p>
+      <h1 class="text-2xl sm:text-3xl font-black text-white">Nos Tarifs & Prestations de Diagnostic</h1>
+      <p class="text-slate-300 mt-2 text-xs sm:text-sm">Déplacement inclus dans un rayon de 15 km autour de Mantes-la-Jolie / Mantes-la-Ville.</p>
     </div>
 
     <!-- BOUTONS DES 3 ONGLETS -->
-<div class="flex flex-row flex-nowrap justify-center items-center gap-1.5 sm:gap-3 mb-8 overflow-x-auto w-full">
-  <button type="button" id="tab-btn-1" onclick="switchTab('tab-1')" class="px-2.5 sm:px-5 py-2 rounded-xl font-bold border transition text-xs sm:text-sm flex items-center justify-center gap-1 bg-sky-600 text-white border-sky-500 shadow-lg shadow-sky-600/20 whitespace-nowrap">
-    🚗 <span class="hidden xs:inline">Véhicules</span> Thermiques
-  </button>
-  <button type="button" id="tab-btn-2" onclick="switchTab('tab-2')" class="px-2.5 sm:px-5 py-2 rounded-xl font-bold border transition text-xs sm:text-sm flex items-center justify-center gap-1 bg-slate-900 text-slate-300 border-slate-700 hover:border-sky-400 whitespace-nowrap">
-    ⚡ <span class="hidden xs:inline">100%</span> Électrique
-  </button>
-  <button type="button" id="tab-btn-3" onclick="switchTab('tab-3')" class="px-3 sm:px-5 py-2 rounded-xl font-bold border transition text-xs sm:text-sm flex items-center justify-center gap-1 bg-slate-900 text-slate-300 border-slate-700 hover:border-amber-400 whitespace-nowrap">
-    🔋 Hybride
-  </button>
-</div>
+    <div class="flex flex-row flex-nowrap justify-center items-center gap-1.5 sm:gap-3 mb-8 overflow-x-auto w-full">
+      <button type="button" id="tab-btn-1" onclick="switchTab('tab-1')" class="px-2.5 sm:px-5 py-2 rounded-xl font-bold border transition text-xs sm:text-sm flex items-center justify-center gap-1 bg-sky-600 text-white border-sky-500 shadow-lg shadow-sky-600/20 whitespace-nowrap">
+        🚗 <span class="hidden xs:inline">Véhicules</span> Thermiques
+      </button>
+      <button type="button" id="tab-btn-2" onclick="switchTab('tab-2')" class="px-2.5 sm:px-5 py-2 rounded-xl font-bold border transition text-xs sm:text-sm flex items-center justify-center gap-1 bg-[#0F1F38] text-slate-300 border-slate-700 hover:border-sky-400 whitespace-nowrap">
+        ⚡ <span class="hidden xs:inline">100%</span> Électrique
+      </button>
+      <button type="button" id="tab-btn-3" onclick="switchTab('tab-3')" class="px-3 sm:px-5 py-2 rounded-xl font-bold border transition text-xs sm:text-sm flex items-center justify-center gap-1 bg-[#0F1F38] text-slate-300 border-slate-700 hover:border-amber-400 whitespace-nowrap">
+        🔋 Hybride
+      </button>
+    </div>
 
     <!-- ================= ONGLET 1 : THERMIQUE ================= -->
     <div id="tab-1" class="tab-panel active">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         
         <!-- Diag Express OBD -->
-        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+        <div class="bg-card-dark rounded-2xl border border-sky-500/30 p-5 flex flex-col justify-between shadow-lg">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Essentiel</span>
@@ -116,7 +137,7 @@
         </div>
 
         <!-- Bilan Santé & Live Data -->
-        <div class="bg-card-blue rounded-xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-lg shadow-sky-500/10">
+        <div class="bg-card-dark rounded-2xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-xl shadow-sky-500/10">
           <div class="absolute -top-2.5 right-3 bg-sky-500 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wide">
             Le plus demandé
           </div>
@@ -160,7 +181,7 @@
         </div>
 
         <!-- Expertise Achat / Vente -->
-        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+        <div class="bg-card-dark rounded-2xl border border-sky-500/30 p-5 flex flex-col justify-between shadow-lg">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Expertise</span>
@@ -207,7 +228,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         
         <!-- Diag Express VE -->
-        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+        <div class="bg-card-dark rounded-2xl border border-sky-500/30 p-5 flex flex-col justify-between shadow-lg">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">100% Électrique</span>
@@ -243,7 +264,7 @@
         </div>
 
         <!-- Bilan Santé Batterie SoH -->
-        <div class="bg-card-blue rounded-xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-lg shadow-sky-500/10">
+        <div class="bg-card-dark rounded-2xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-xl shadow-sky-500/10">
           <div class="absolute -top-2.5 right-3 bg-sky-500 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wide">Incontournable VE</div>
           <div>
             <div class="flex justify-between items-center mb-2">
@@ -280,7 +301,7 @@
         </div>
 
         <!-- Expertise HT & Déblocage -->
-        <div class="bg-card-blue rounded-xl border-2 border-hv-yellow p-5 flex flex-col justify-between relative">
+        <div class="bg-card-dark rounded-2xl border-2 border-hv-yellow p-5 flex flex-col justify-between relative shadow-lg">
           <div class="absolute -top-2.5 right-3 bg-hv-yellow text-slate-900 font-black text-[10px] px-2 py-0.5 rounded uppercase">NF C 18-550</div>
           <div>
             <div class="flex justify-between items-center mb-2">
@@ -324,7 +345,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         
         <!-- Diag Express Hybride -->
-        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+        <div class="bg-card-dark rounded-2xl border border-sky-500/30 p-5 flex flex-col justify-between shadow-lg">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Double Réseau</span>
@@ -360,7 +381,7 @@
         </div>
 
         <!-- Bilan Santé Avancé Hybride -->
-        <div class="bg-card-blue rounded-xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-lg shadow-sky-500/10">
+        <div class="bg-card-dark rounded-2xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-xl shadow-sky-500/10">
           <div class="absolute -top-2.5 right-3 bg-sky-500 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wide">Complet</div>
           <div>
             <div class="flex justify-between items-center mb-2">
@@ -397,7 +418,7 @@
         </div>
 
         <!-- Expertise Achat Hybride -->
-        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+        <div class="bg-card-dark rounded-2xl border border-sky-500/30 p-5 flex flex-col justify-between shadow-lg">
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Expertise 360°</span>
@@ -439,7 +460,7 @@
 
   <!-- ================= MODALES THERMIQUES ================= -->
   <div id="modal-express" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-express')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-express')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Diag Express OBD (59 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -453,7 +474,7 @@
   </div>
 
   <div id="modal-avance" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-avance')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-avance')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Bilan Santé & Live Data (99 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -467,7 +488,7 @@
   </div>
 
   <div id="modal-achat-vente" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-achat-vente')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-achat-vente')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Expertise Achat / Vente (159 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -482,7 +503,7 @@
 
   <!-- ================= MODALES VE ================= -->
   <div id="modal-ve-express" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-ve-express')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-ve-express')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Diag Express Électrique (69 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -494,7 +515,7 @@
   </div>
 
   <div id="modal-ve-soh" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-ve-soh')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-ve-soh')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Bilan Santé Batterie HT SoH (109 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -508,7 +529,7 @@
   </div>
 
   <div id="modal-ve-ht" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-ve-ht')">
-    <div class="bg-card-blue border-2 border-hv-yellow max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border-2 border-hv-yellow max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-ve-ht')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-hv-yellow mb-2">HT Expertise & Déblocage (189 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -522,7 +543,7 @@
 
   <!-- ================= MODALES HYBRIDE ================= -->
   <div id="modal-hy-express" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-hy-express')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-hy-express')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Diag Express Hybride (69 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -534,7 +555,7 @@
   </div>
 
   <div id="modal-hy-avance" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-hy-avance')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-hy-avance')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Bilan Santé Hybride & SoH (119 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -547,7 +568,7 @@
   </div>
 
   <div id="modal-hy-achat" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-hy-achat')">
-    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+    <div class="bg-card-dark border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
       <button type="button" onclick="closeModal('modal-hy-achat')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
       <h3 class="text-xl font-bold text-white mb-2">Expertise Achat / Vente Hybride (179 €)</h3>
       <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
@@ -574,7 +595,7 @@
       const btn3 = document.getElementById('tab-btn-3');
 
       // Style réinitialisé
-      const baseStyle = "px-5 py-2.5 rounded-xl font-bold border transition text-sm flex items-center justify-center gap-2 bg-slate-900 text-slate-300 border-slate-700";
+      const baseStyle = "px-2.5 sm:px-5 py-2 rounded-xl font-bold border transition text-xs sm:text-sm flex items-center justify-center gap-1 bg-[#0F1F38] text-slate-300 border-slate-700 whitespace-nowrap";
 
       btn1.className = baseStyle + " hover:border-sky-400";
       btn2.className = baseStyle + " hover:border-sky-400";
@@ -604,9 +625,10 @@
     }
   </script>
 
-  <!-- Footer -->
-  <footer class="bg-card-blue border-t border-slate-800 py-6 text-center text-sm text-slate-400">
-    <p>© 2026 DiagVE.Mobile — Diagnostic & Électronique Automobile (Mantes 15 km)</p>
+  <!-- Footer harmonisé -->
+  <footer class="bg-card-dark border-t border-slate-800 py-6 text-center text-xs text-slate-400 flex items-center justify-center gap-2 mt-auto">
+    <img src="icon.png" alt="" class="w-4 h-4 opacity-75">
+    <p>© 2026 DiagVE.Mobile — Diagnostic & Habilitation NF C 18-550 (Mantes-la-Jolie)</p>
   </footer>
 
 </body>

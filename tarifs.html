@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs & Services - DiagVE.Mobile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .bg-dark-blue { background-color: #0A192F; }
+    .bg-card-blue { background-color: #112240; }
+    .text-hv-yellow { color: #EAB308; }
+    .bg-hv-yellow { background-color: #EAB308; }
+    .border-hv-yellow { border-color: #EAB308; }
+    
+    /* Overlay Pop-up Modale */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-backdrop.open {
+      display: flex !important;
+    }
+
+    /* Animation & Visibilité des Onglets */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+  </style>
+</head>
+<body class="bg-dark-blue text-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- Header / Navigation -->
+  <header class="bg-card-blue border-b border-slate-800 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="text-2xl font-black text-hv-yellow">⚡ DiagVE</span>
+        <span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-hv-yellow font-bold border border-amber-400/30">MOBILE</span>
+      </div>
+      <nav class="flex space-x-6 text-sm font-semibold">
+        <a href="index.html" class="text-slate-300 hover:text-white transition">Accueil</a>
+        <a href="tarifs.html" class="text-hv-yellow border-b-2 border-hv-yellow pb-1">Tarifs & Services</a>
+        <a href="contact.html" class="text-slate-300 hover:text-white transition">Contact / RDV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-6xl mx-auto px-4 py-10">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-black text-white">Nos Tarifs & Prestations de Diagnostic</h1>
+      <p class="text-slate-300 mt-2 text-sm">Déplacement inclus dans un rayon de 15 km autour de Mantes-la-Jolie / Mantes-la-Ville.</p>
+    </div>
+
+    <!-- BOUTONS DES 3 ONGLETS -->
+    <div class="flex flex-col sm:flex-row justify-center gap-3 mb-8">
+      <button type="button" id="tab-btn-1" onclick="switchTab('tab-1')" class="px-5 py-2.5 rounded-xl font-bold border transition text-sm flex items-center justify-center gap-2 bg-sky-600 text-white border-sky-500 shadow-lg shadow-sky-600/20">
+        🚗 Véhicules Thermiques
+      </button>
+      <button type="button" id="tab-btn-2" onclick="switchTab('tab-2')" class="px-5 py-2.5 rounded-xl font-bold border transition text-sm flex items-center justify-center gap-2 bg-slate-900 text-slate-300 border-slate-700 hover:border-sky-400">
+        ⚡ 100% Électrique (VE)
+      </button>
+      <button type="button" id="tab-btn-3" onclick="switchTab('tab-3')" class="px-5 py-2.5 rounded-xl font-bold border transition text-sm flex items-center justify-center gap-2 bg-slate-900 text-slate-300 border-slate-700 hover:border-amber-400">
+        🔋 Hybride & Rechargeable
+      </button>
+    </div>
+
+    <!-- ================= ONGLET 1 : THERMIQUE ================= -->
+    <div id="tab-1" class="tab-panel active">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Diag Express OBD -->
+        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Essentiel</span>
+              <span class="text-3xl font-black text-white">59 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Diag Express OBD</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 15-20 min | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Lecture électronique des codes défauts sur l'ensemble des calculateurs de votre véhicule thermique.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Un voyant (moteur, ABS, Airbag...) est allumé.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Avant/après le Contrôle Technique pour effacement.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Rapport PDF officiel des pannes enregistrées.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-express')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">
+              📋 Voir détails
+            </button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs">
+              Réserver (59 €)
+            </a>
+          </div>
+        </div>
+
+        <!-- Bilan Santé & Live Data -->
+        <div class="bg-card-blue rounded-xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-lg shadow-sky-500/10">
+          <div class="absolute -top-2.5 right-3 bg-sky-500 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wide">
+            Le plus demandé
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Avancé</span>
+              <span class="text-3xl font-black text-white">99 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Bilan Santé & Live Data</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 30-45 min | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Analyse dynamique des calculateurs (Live Data), test physique batterie 12V et diagnostic d'orientation de panne moteur/injection.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Recherche de pannes complexes (perte de puissance, bruits, FAP).</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Analyse en direct : pression turbo, injecteurs, débitmètre.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Test physique complet de la batterie 12V par conductance.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-avance')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">
+              📋 Voir détails
+            </button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs shadow-md">
+              Réserver (99 €)
+            </a>
+          </div>
+        </div>
+
+        <!-- Expertise Achat / Vente -->
+        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Expertise</span>
+              <span class="text-3xl font-black text-white">159 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Expertise Achat / Vente</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 1h | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Contrôle complet statique, électronique, pneumatiques et test des fluides (humidité frein, LDR, huile) pour sécuriser votre transaction.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Sécuriser un achat d'occasion sans mauvaise surprise.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Contrôle technique des liquides (humidité frein, LDR, huile).</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Prouver le bon état du véhicule à un futur acheteur.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-achat-vente')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">
+              📋 Voir détails
+            </button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs">
+              Réserver (159 €)
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= ONGLET 2 : 100% ÉLECTRIQUE ================= -->
+    <div id="tab-2" class="tab-panel">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Diag Express VE -->
+        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">100% Électrique</span>
+              <span class="text-3xl font-black text-white">69 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Diag Express Électrique</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 20 min | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Scan électronique complet du réseau bord, du calculateur BMS et du système de charge VE.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Voyant ou alerte spécifique sur le système électrique.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Vérification rapide après un problème de charge.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Rapport PDF officiel des codes défauts de la voiture électrique.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-ve-express')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">📋 Voir détails</button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs">Réserver (69 €)</a>
+          </div>
+        </div>
+
+        <!-- Bilan Santé Batterie SoH -->
+        <div class="bg-card-blue rounded-xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-lg shadow-sky-500/10">
+          <div class="absolute -top-2.5 right-3 bg-sky-500 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wide">Incontournable VE</div>
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Certificat SoH</span>
+              <span class="text-3xl font-black text-white">109 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Bilan Santé Batterie HT (SoH)</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 45 min | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Extraction de la santé résiduelle réelle (SoH %), équilibrage des cellules et certificat de batterie officiel.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Acheter ou vendre un véhicule 100% électrique en toute sécurité.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Connaître la capacité réelle et l'usure de la batterie de traction.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Obtenir un certificat officiel reconnu pour la garantie.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-ve-soh')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">📋 Voir détails</button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs shadow-md">Réserver (109 €)</a>
+          </div>
+        </div>
+
+        <!-- Expertise HT & Déblocage -->
+        <div class="bg-card-blue rounded-xl border-2 border-hv-yellow p-5 flex flex-col justify-between relative">
+          <div class="absolute -top-2.5 right-3 bg-hv-yellow text-slate-900 font-black text-[10px] px-2 py-0.5 rounded uppercase">NF C 18-550</div>
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-amber-400/10 text-hv-yellow text-xs font-bold px-2.5 py-0.5 rounded-full border border-amber-400/30">Haute Tension</span>
+              <span class="text-3xl font-black text-hv-yellow">189 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">HT Expertise & Déblocage</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 1h à 1h30 | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Consignation sécurisée, test d'isolement au Mégohmmètre (500V) et réarmement logiciels/contacteurs HT.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Véhicule bloqué suite à un défaut d'isolement ou un choc.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Besoin d'une intervention conforme aux normes de sécurité NF C 18-550.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Réarmement du pack Haute Tension et effacement des sécurités logicielles.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-ve-ht')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-hv-yellow border border-amber-400/30 font-semibold py-1.5 rounded-lg text-xs transition">📋 Voir détails</button>
+            <a href="contact.html" class="block w-full text-center bg-hv-yellow hover:bg-yellow-400 text-slate-900 font-black py-2 rounded-lg transition text-xs">Commander (189 €)</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= ONGLET 3 : HYBRIDE & RECHARGEABLE ================= -->
+    <div id="tab-3" class="tab-panel">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Diag Express Hybride -->
+        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Double Réseau</span>
+              <span class="text-3xl font-black text-white">69 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Diag Express Hybride</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 25 min | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Interrogation complète des 2 moteurs (scan moteur thermique + inverter/BMS hybride).
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Voyant allumé sur un véhicule hybride ou rechargeable (PHEV/HEV).</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Analyser rapidement l'origine d'un dysfonctionnement partiel.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Rapport PDF complet des calculateurs thermiques et électriques.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-hy-express')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">📋 Voir détails</button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs">Réserver (69 €)</a>
+          </div>
+        </div>
+
+        <!-- Bilan Santé Avancé Hybride -->
+        <div class="bg-card-blue rounded-xl border-2 border-sky-400 p-5 flex flex-col justify-between relative shadow-lg shadow-sky-500/10">
+          <div class="absolute -top-2.5 right-3 bg-sky-500 text-white font-black text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wide">Complet</div>
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Double Bilan</span>
+              <span class="text-3xl font-black text-white">119 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Bilan Santé Hybride & SoH</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 45 min à 1h | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Analyse Live Data thermique (injection/FAP) + Bilan santé SoH de la batterie hybride & test 12V.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Creuser un problème de performance ou de passage de mode électrique/thermique.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Vérifier la santé réelle de la batterie de traction et de la batterie 12V.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Bilan approfondi combinant les deux chaînes de motorisation.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-hy-avance')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">📋 Voir détails</button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs shadow-md">Réserver (119 €)</a>
+          </div>
+        </div>
+
+        <!-- Expertise Achat Hybride -->
+        <div class="bg-card-blue rounded-xl border border-sky-500/30 p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <span class="bg-sky-500/10 text-sky-400 text-xs font-bold px-2.5 py-0.5 rounded-full border border-sky-500/20">Expertise 360°</span>
+              <span class="text-3xl font-black text-white">179 €</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Expertise Achat / Vente Hybride</h3>
+            <p class="text-xs text-slate-400 mb-3">⏱️ Durée : 1h15 | 15 km inclus</p>
+            <p class="text-slate-300 text-xs mb-4 leading-relaxed">
+              Contrôle global : fluides thermiques (frein/LDR/huile), usure pneumatiques, diagnostic double moteur & Bilan SoH certifié.
+            </p>
+          </div>
+
+          <div class="mt-2 mb-4 pt-3 border-t border-slate-800">
+            <details class="group">
+              <summary class="flex justify-between items-center font-semibold text-xs text-sky-400 cursor-pointer hover:text-sky-300 transition-colors">
+                <span>❓ Pourquoi choisir cette prestation ?</span>
+                <span class="transition group-open:rotate-180">
+                  <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </summary>
+              <ul class="mt-2 space-y-1.5 text-[11px] text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Sécuriser l'achat d'un véhicule hybride ou rechargeable (PHEV).</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Vérifier à la fois la mécanique thermique et l'état de la batterie HT.</span></li>
+                <li class="flex items-start"><span class="mr-1.5 text-sky-400">•</span><span>Obtenir un rapport complet et certifié avant transaction.</span></li>
+              </ul>
+            </details>
+          </div>
+
+          <div class="space-y-2">
+            <button type="button" onclick="openModal('modal-hy-achat')" class="w-full text-center bg-slate-900 hover:bg-slate-800 text-sky-400 border border-sky-500/30 font-semibold py-1.5 rounded-lg text-xs transition">📋 Voir détails</button>
+            <a href="contact.html" class="block w-full text-center bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded-lg transition text-xs">Réserver (179 €)</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= MODALES THERMIQUES ================= -->
+  <div id="modal-express" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-express')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-express')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Diag Express OBD (59 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Branchement OBD2 et auto-scan global des calculateurs.</p>
+        <p>• Lecture, décodage et explication des codes défauts (DTC).</p>
+        <p>• Effacement des voyants résolus ou temporaires.</p>
+        <p>• Envoi du rapport de diagnostic PDF officiel.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-express')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <div id="modal-avance" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-avance')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-avance')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Bilan Santé & Live Data (99 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Tout le contenu du Diag Express.</p>
+        <p>• Analyse Live Data : pression turbo, injection, colmatage FAP.</p>
+        <p>• Test physique de la batterie 12V par conductance (SOH % et CCA).</p>
+        <p>• Diagnostic d'orientation de panne et préconisations de réparation.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-avance')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <div id="modal-achat-vente" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-achat-vente')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-achat-vente')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Expertise Achat / Vente (159 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Scan global & recherche d'historique de pannes masquées.</p>
+        <p>• Test physique batterie 12V à conductance.</p>
+        <p>• <strong>Tests des liquides :</strong> Humidité du liquide de frein, état du LDR et contrôle qualité/niveau huile moteur.</p>
+        <p>• Contrôle d'usure des pneumatiques et inspection des soubassements.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-achat-vente')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <!-- ================= MODALES VE ================= -->
+  <div id="modal-ve-express" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-ve-express')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-ve-express')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Diag Express Électrique (69 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Scan des calculateurs VE (BMS, Inverter, Prise de charge Type 2/CCS).</p>
+        <p>• Lecture/effacement des voyants et génération du rapport PDF.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-ve-express')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <div id="modal-ve-soh" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-ve-soh')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-ve-soh')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Bilan Santé Batterie HT SoH (109 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Interrogation directe du BMS via Autel Ultra EV.</p>
+        <p>• Extraction du SoH % réel (santé batterie) et capacité disponible en kWh.</p>
+        <p>• Contrôle des deltas de tension entre cellules et historique de charge AC/DC.</p>
+        <p>• Édition du Certificat Officiel de Santé Batterie.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-ve-soh')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <div id="modal-ve-ht" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-ve-ht')">
+    <div class="bg-card-blue border-2 border-hv-yellow max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-ve-ht')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-hv-yellow mb-2">HT Expertise & Déblocage (189 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Procedure de consignation NF C 18-550 (dépose service plug / cadenas).</p>
+        <p>• Vérification d'Absence de Tension (VAT) et test d'isolement Mégohmmètre (500V DC).</p>
+        <p>• Réarmement des contacteurs et déblocage logiciel du système HT.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-ve-ht')" class="mt-6 w-full bg-hv-yellow hover:bg-yellow-400 text-slate-900 font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <!-- ================= MODALES HYBRIDE ================= -->
+  <div id="modal-hy-express" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-hy-express')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-hy-express')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Diag Express Hybride (69 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Interrogation combinée du moteur thermique et du système hybride/inverter.</p>
+        <p>• Lecture/effacement des défauts DTC et rapport PDF.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-hy-express')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <div id="modal-hy-avance" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-hy-avance')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-hy-avance')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Bilan Santé Hybride & SoH (119 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Analyse Live Data moteur thermique + module hybride.</p>
+        <p>• Test de santé résiduelle SoH de la batterie hybride & test batterie 12V.</p>
+        <p>• Rapport complet avec préconisations de maintenance.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-hy-avance')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <div id="modal-hy-achat" class="modal-backdrop" onclick="closeModalOnBg(event, 'modal-hy-achat')">
+    <div class="bg-card-blue border border-sky-500/30 max-w-lg w-full rounded-2xl p-6 relative text-slate-200 shadow-2xl">
+      <button type="button" onclick="closeModal('modal-hy-achat')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl font-bold">✕</button>
+      <h3 class="text-xl font-bold text-white mb-2">Expertise Achat / Vente Hybride (179 €)</h3>
+      <div class="space-y-3 text-xs text-slate-300 border-t border-slate-800 pt-3">
+        <p>• Diagnostic double motorisation (thermique + électrique).</p>
+        <p>• <strong>Contrôle des fluides thermiques :</strong> Humidité liquide de frein, état LDR, huile moteur.</p>
+        <p>• Inspection des pneumatiques, soubassements et câblage Haute Tension.</p>
+        <p>• Bilan Santé SoH certifié de la batterie de traction hybride.</p>
+      </div>
+      <button type="button" onclick="closeModal('modal-hy-achat')" class="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs">Fermer</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT DE GESTION DES 3 ONGLETS ET MODALES -->
+  <script>
+    function switchTab(tabId) {
+      document.getElementById('tab-1').classList.remove('active');
+      document.getElementById('tab-2').classList.remove('active');
+      document.getElementById('tab-3').classList.remove('active');
+      
+      document.getElementById(tabId).classList.add('active');
+
+      const btn1 = document.getElementById('tab-btn-1');
+      const btn2 = document.getElementById('tab-btn-2');
+      const btn3 = document.getElementById('tab-btn-3');
+
+      // Style réinitialisé
+      const baseStyle = "px-5 py-2.5 rounded-xl font-bold border transition text-sm flex items-center justify-center gap-2 bg-slate-900 text-slate-300 border-slate-700";
+
+      btn1.className = baseStyle + " hover:border-sky-400";
+      btn2.className = baseStyle + " hover:border-sky-400";
+      btn3.className = baseStyle + " hover:border-amber-400";
+
+      if (tabId === 'tab-1') {
+        btn1.className = baseStyle + " bg-sky-600 text-white border-sky-500 shadow-lg shadow-sky-600/20";
+      } else if (tabId === 'tab-2') {
+        btn2.className = baseStyle + " bg-sky-600 text-white border-sky-500 shadow-lg shadow-sky-600/20";
+      } else if (tabId === 'tab-3') {
+        btn3.className = baseStyle + " bg-hv-yellow text-slate-900 border-amber-400 shadow-lg shadow-amber-400/20";
+      }
+    }
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add('open');
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.remove('open');
+    }
+
+    function closeModalOnBg(e, id) {
+      if (e.target.id === id) closeModal(id);
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="bg-card-blue border-t border-slate-800 py-6 text-center text-sm text-slate-400">
+    <p>© 2026 DiagVE.Mobile — Diagnostic & Électronique Automobile (Mantes 15 km)</p>
+  </footer>
+
+</body>
+</html>

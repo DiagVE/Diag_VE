@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & RDV - DiagVE.Mobile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .bg-dark-blue { background-color: #0A192F; }
+    .bg-card-blue { background-color: #112240; }
+    .text-hv-yellow { color: #EAB308; }
+    .bg-hv-yellow { background-color: #EAB308; }
+    .border-hv-yellow { border-color: #EAB308; }
+  </style>
+</head>
+<body class="bg-dark-blue text-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- Header / Navigation -->
+  <header class="bg-card-blue border-b border-slate-800 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="text-2xl font-black text-hv-yellow">⚡ DiagVE</span>
+        <span class="text-xs px-2 py-0.5 rounded bg-amber-400/20 text-hv-yellow font-bold border border-amber-400/30">MOBILE</span>
+      </div>
+      <nav class="flex space-x-6 text-sm font-semibold">
+        <a href="index.html" class="text-slate-300 hover:text-white transition">Accueil</a>
+        <a href="tarifs.html" class="text-slate-300 hover:text-white transition">Tarifs & Services</a>
+        <a href="contact.html" class="text-hv-yellow border-b-2 border-hv-yellow pb-1">Contact / RDV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-4xl mx-auto px-4 py-12 w-full">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl font-black text-white">Prise de Rendez-vous & Contact</h1>
+      <p class="text-slate-300 mt-2">Intervention à domicile dans un rayon de 15 km autour de Mantes-la-Jolie / Mantes-la-Ville.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Formulaire -->
+      <div class="md:col-span-2 bg-card-blue p-6 rounded-2xl border border-slate-800">
+        <form class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Nom / Prénom</label>
+            <input type="text" class="w-full bg-slate-900 border border-slate-700 rounded p-2.5 text-white focus:border-hv-yellow outline-none" placeholder="Votre nom" required>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Téléphone</label>
+              <input type="tel" class="w-full bg-slate-900 border border-slate-700 rounded p-2.5 text-white focus:border-hv-yellow outline-none" placeholder="06 00 00 00 00" required>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Ville d'intervention</label>
+              <input type="text" class="w-full bg-slate-900 border border-slate-700 rounded p-2.5 text-white focus:border-hv-yellow outline-none" placeholder="Ex: Mantes-la-Jolie" required>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Modèle du véhicule</label>
+            <input type="text" class="w-full bg-slate-900 border border-slate-700 rounded p-2.5 text-white focus:border-hv-yellow outline-none" placeholder="Ex: Renault ZOE, Peugeot e-208, Tesla..." required>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Forfait souhaité</label>
+            <select class="w-full bg-slate-900 border border-slate-700 rounded p-2.5 text-white focus:border-hv-yellow outline-none">
+              <option>Diag Express OBD (59 €)</option>
+              <option>Bilan SoH Batterie HT (109 €)</option>
+              <option>Forfait Achat / Vente (159 €)</option>
+              <option>HT Expertise & Déblocage 12V (189 €)</option>
+              <option>Démarrage de Secours (69 €)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Description du problème / Message</label>
+            <textarea rows="3" class="w-full bg-slate-900 border border-slate-700 rounded p-2.5 text-white focus:border-hv-yellow outline-none" placeholder="Voyant affiché, véhicule bloqué, etc."></textarea>
+          </div>
+
+          <button type="submit" class="w-full bg-hv-yellow hover:bg-yellow-400 text-slate-900 font-black py-3 rounded-lg transition">
+            Envoyer la demande
+          </button>
+        </form>
+      </div>
+
+      <!-- Info Périmètre -->
+      <div class="space-y-6">
+        <div class="bg-card-blue p-6 rounded-2xl border border-slate-800">
+          <h3 class="text-lg font-bold text-hv-yellow mb-3">📍 Périmètre</h3>
+          <p class="text-sm text-slate-300 leading-relaxed mb-4">
+            Intervention exclusivement sur rendez-vous dans la zone de <strong>15 km</strong> autour de Mantes-la-Jolie et Mantes-la-Ville.
+          </p>
+          <div class="bg-slate-900 p-3 rounded text-xs text-slate-400">
+            • Mantes-la-Jolie / Mantes-la-Ville<br>
+            • Limay, Magnanville, Buchelay<br>
+            • Communes environnantes (15 km)
+          </div>
+        </div>
+
+        <div class="bg-card-blue p-6 rounded-2xl border border-slate-800">
+          <h3 class="text-lg font-bold text-hv-yellow mb-2">⚡ Habilitations</h3>
+          <p class="text-xs text-slate-300">
+            Technicien habilité selon la norme <strong>NF C 18-550</strong> pour interventions Haute Tension (B1VL / B2VL / B2XL / BCL).
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-card-blue border-t border-slate-800 py-6 text-center text-sm text-slate-400">
+    <p>© 2026 DiagVE.Mobile — Diagnostic & Expertise Haute Tension Mobile (Mantes 15 km)</p>
+  </footer>
+
+</body>
+</html>

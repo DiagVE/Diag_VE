@@ -13,6 +13,8 @@
     .border-hv-yellow { border-color: #EAB308; }
     .hero-gradient { background: linear-gradient(135deg, #0A192F 0%, #0d324d 50%, #0f4c5c 100%); }
   </style>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0A192F">
 </head>
 <body class="bg-dark-blue text-slate-100 min-h-screen flex flex-col font-sans">
 
@@ -31,7 +33,7 @@
     </div>
   </header>
 
-  <!-- Hero Section agrandie (environ la moitié de la page) -->
+  <!-- Hero Section bien aérée -->
   <section class="hero-gradient py-12 sm:py-16 px-4 border-b border-slate-800 text-center relative">
     <div class="max-w-5xl mx-auto space-y-4">
       
@@ -67,54 +69,56 @@
     </div>
   </section>
 
-  <!-- CONTENEUR GLOBAL DES 2 SECTIONS DU BAS (Forcées côte à côte sur mobile) -->
-  <main class="flex-grow max-w-6xl mx-auto px-3 py-4 w-full">
-    <div class="grid grid-cols-2 gap-2 w-full">
+  <!-- CONTENEUR DU BAS : empilé sur mobile, côte à côte propre sur PC (grâce à md:) -->
+  <main class="flex-grow max-w-6xl mx-auto px-4 py-6 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <!-- SECTION 1 : ÉQUIPEMENTS & OUTILS -->
-      <div class="bg-card-blue border border-slate-800 rounded-xl p-2.5 flex flex-col justify-between">
-        <div class="text-center mb-2">
-          <span class="text-emerald-400 text-[8px] font-bold uppercase tracking-wider">Outillage</span>
-          <h2 class="text-[11px] sm:text-sm font-bold text-white">Équipements</h2>
+      <div class="bg-card-blue border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
+        <div class="text-center mb-4">
+          <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Outillage & Sécurité</span>
+          <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Équipements Homologués</h2>
         </div>
 
-        <div class="flex flex-row flex-nowrap gap-1 w-full">
-          <div class="flex-1 min-w-0 bg-slate-900/90 p-1 rounded-lg border border-slate-800 text-center">
-            <div class="text-xs mb-0.5">💻</div>
-            <h4 class="font-bold text-white text-[7px] leading-tight truncate">Autel</h4>
-            <p class="text-[6px] text-slate-400 mt-0.5 leading-tight truncate">BMS</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 text-center">
+            <div class="text-xl mb-1">💻</div>
+            <h4 class="font-bold text-white text-xs">Autel EV</h4>
+            <p class="text-[10px] text-slate-400 mt-1">BMS & réarm.</p>
           </div>
 
-          <div class="flex-1 min-w-0 bg-slate-900/90 p-1 rounded-lg border border-slate-800 text-center">
-            <div class="text-xs mb-0.5">⚡</div>
-            <h4 class="font-bold text-white text-[7px] leading-tight truncate">Mégohm</h4>
-            <p class="text-[6px] text-slate-400 mt-0.5 leading-tight truncate">Isolement</p>
+          <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 text-center">
+            <div class="text-xl mb-1">⚡</div>
+            <h4 class="font-bold text-white text-xs">Mégohmmètre</h4>
+            <p class="text-[10px] text-slate-400 mt-1">Isolation HT.</p>
           </div>
 
-          <div class="flex-1 min-w-0 bg-slate-900/90 p-1 rounded-lg border border-slate-800 text-center">
-            <div class="text-xs mb-0.5">🛡️</div>
-            <h4 class="font-bold text-white text-[7px] leading-tight truncate">EPI</h4>
-            <p class="text-[6px] text-slate-400 mt-0.5 leading-tight truncate">Sécurité</p>
+          <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 text-center">
+            <div class="text-xl mb-1">🛡️</div>
+            <h4 class="font-bold text-white text-xs">EPI 1000V</h4>
+            <p class="text-[10px] text-slate-400 mt-1">NF C 18-550.</p>
           </div>
 
-          <div class="flex-1 min-w-0 bg-slate-900/90 p-1 rounded-lg border border-slate-800 text-center">
-            <div class="text-xs mb-0.5">🔋</div>
-            <h4 class="font-bold text-white text-[7px] leading-tight truncate">Booster</h4>
-            <p class="text-[6px] text-slate-400 mt-0.5 leading-tight truncate">12V</p>
+          <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 text-center">
+            <div class="text-xl mb-1">🔋</div>
+            <h4 class="font-bold text-white text-xs">Booster VE</h4>
+            <p class="text-[10px] text-slate-400 mt-1">Alim 12V stab.</p>
           </div>
         </div>
       </div>
 
       <!-- SECTION 2 : ZONE D'INTERVENTION -->
-      <div class="bg-card-blue border border-slate-800 rounded-xl p-2.5 flex flex-col justify-between text-center">
+      <div class="bg-card-blue border border-slate-800 rounded-2xl p-5 flex flex-col justify-between text-center">
         <div>
-          <span class="text-emerald-400 text-[8px] font-bold uppercase tracking-wider">Secteur</span>
-          <h2 class="text-[11px] sm:text-sm font-bold text-white">Mantes (20 km)</h2>
-          <p class="text-[8px] text-slate-300 mt-0.5 truncate">Mantes, Limay, Gargenville, Épône...</p>
+          <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Déplacement</span>
+          <h2 class="text-base sm:text-lg font-bold text-white mt-0.5">Zone d'intervention (20 km)</h2>
+          <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+            Mantes-la-Jolie, Mantes-la-Ville, Limay, Gargenville, Épône, Aubergenville, Les Mureaux, Rosny-sur-Seine.
+          </p>
         </div>
-        <div class="pt-1">
-          <a href="contact.html" class="inline-block bg-hv-yellow text-slate-900 font-bold px-3 py-1 rounded-lg text-[9px] w-full">
-            Réserver ⚡
+        <div class="pt-6">
+          <a href="contact.html" class="inline-block bg-hv-yellow hover:bg-yellow-400 text-slate-900 font-bold px-6 py-3 rounded-xl text-xs sm:text-sm transition shadow-md">
+            Réserver un créneau ⚡
           </a>
         </div>
       </div>
@@ -123,7 +127,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-card-blue border-t border-slate-800 py-2.5 text-center text-[10px] text-slate-400">
+  <footer class="bg-card-blue border-t border-slate-800 py-4 text-center text-xs text-slate-400">
     <p>© 2026 DiagVE.Mobile — Mantes (20 km)</p>
   </footer>
 

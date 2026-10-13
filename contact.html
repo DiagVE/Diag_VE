@@ -12,6 +12,8 @@
     .bg-hv-yellow { background-color: #EAB308; }
     .border-hv-yellow { border-color: #EAB308; }
   </style>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0A192F">
 </head>
 <body class="bg-dark-blue text-slate-100 min-h-screen flex flex-col font-sans">
 
@@ -37,56 +39,58 @@
       <p class="text-slate-300 text-xs sm:text-sm mt-2">Intervention à domicile dans un rayon de 20 km autour de Mantes-la-Jolie / Mantes-la-Ville.</p>
     </div>
 
-    <!-- BOUTONS D'ACTION RAPIDE (FORCÉS CÔTE À CÔTE SUR MOBILE) -->
-    <div class="grid grid-cols-2 gap-2 sm:gap-4 mb-8">
-      <a href="https://wa.me/33600000000?text=Bonjour,%20je%20souhaite%20un%20renseignement%20ou%20un%20rendez-vous%20pour%20un%20diagnostic." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold p-3 sm:p-4 rounded-xl sm:rounded-2xl flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 shadow-lg shadow-emerald-600/20 transition text-center">
-        <span class="text-xl sm:text-2xl">💬</span>
-        <div class="text-center sm:text-left">
-          <div class="text-[9px] sm:text-xs uppercase tracking-wider text-emerald-200">WhatsApp</div>
-          <div class="text-xs sm:text-sm font-black">Discuter</div>
+    <!-- BOUTONS D'ACTION RAPIDE (WhatsApp Web/Mobile & Appel) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      <a href="https://api.whatsapp.com/send?phone=33600000000&text=Bonjour,%20je%20souhaite%20un%20renseignement%20ou%20un%20rendez-vous%20pour%20un%20diagnostic." target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold p-4 rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-emerald-600/20 transition text-center">
+        <span class="text-2xl">💬</span>
+        <div class="text-left">
+          <div class="text-xs uppercase tracking-wider text-emerald-200">WhatsApp Direct</div>
+          <div class="text-sm font-black">Discuter sur WhatsApp</div>
         </div>
       </a>
 
-      <a href="tel:0600000000" class="bg-slate-900 hover:bg-slate-800 text-white font-bold p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 transition text-center">
-        <span class="text-xl sm:text-2xl">📞</span>
-        <div class="text-center sm:text-left">
-          <div class="text-[9px] sm:text-xs uppercase tracking-wider text-slate-400">Téléphone</div>
-          <div class="text-xs sm:text-sm font-black">Appeler</div>
+      <a href="tel:0600000000" class="bg-slate-900 hover:bg-slate-800 text-white font-bold p-4 rounded-2xl border border-slate-700 flex items-center justify-center gap-3 transition text-center">
+        <span class="text-2xl">📞</span>
+        <div class="text-left">
+          <div class="text-xs uppercase tracking-wider text-slate-400">Appel Téléphonique</div>
+          <div class="text-sm font-black">06 00 00 00 00</div>
         </div>
       </a>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
       
-      <!-- Formulaire avec envoi WhatsApp -->
+      <!-- Formulaire E-mail classique pour PC & Mobile -->
       <div class="md:col-span-2 bg-card-blue p-5 sm:p-6 rounded-2xl border border-slate-800">
-        <h2 class="text-base font-bold text-white mb-4">Demande de RDV par formulaire</h2>
+        <h2 class="text-base font-bold text-white mb-1">✉️ Demande par E-mail</h2>
+        <p class="text-xs text-slate-400 mb-4">Remplissez ce formulaire pour recevoir un devis ou une confirmation par e-mail.</p>
         
-        <form id="whatsapp-form" onsubmit="sendToWhatsApp(event)" class="space-y-4">
+        <!-- Formulaire Formspree (remplacer VOTRE_FORM_ID) -->
+        <form action="https://formspree.io/f/VOTRE_FORM_ID" method="POST" class="space-y-4">
           <div>
             <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Nom / Prénom</label>
-            <input type="text" id="nom" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Votre nom" required>
+            <input type="text" name="nom" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Votre nom" required>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Téléphone</label>
-              <input type="tel" id="telephone" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="06 00 00 00 00" required>
+              <input type="tel" name="telephone" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="06 00 00 00 00" required>
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Ville d'intervention</label>
-              <input type="text" id="ville" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Ex: Mantes-la-Jolie" required>
+              <input type="text" name="ville" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Ex: Mantes-la-Jolie" required>
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Modèle du véhicule</label>
-            <input type="text" id="vehicule" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Ex: Renault ZOE, Peugeot e-208, Tesla..." required>
+            <input type="text" name="vehicule" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Ex: Renault ZOE, Peugeot e-208, Tesla..." required>
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Forfait souhaité</label>
-            <select id="forfait" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm">
+            <select name="forfait" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm">
               <option>Diag Express OBD (59 €)</option>
               <option>Bilan SoH Batterie HT (109 €)</option>
               <option>Forfait Achat / Vente (159 €)</option>
@@ -97,38 +101,34 @@
 
           <div>
             <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Description du problème / Message</label>
-            <textarea id="message" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Voyant affiché, véhicule bloqué, etc."></textarea>
+            <textarea name="message" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:border-hv-yellow outline-none text-sm" placeholder="Voyant affiché, véhicule bloqué, etc."></textarea>
           </div>
 
-          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-600/20">
-            Envoyer ma demande sur WhatsApp 💬
+          <button type="submit" class="w-full bg-hv-yellow hover:bg-yellow-400 text-slate-900 font-black py-3 rounded-xl transition text-sm shadow-lg shadow-amber-400/20">
+            Envoyer la demande par E-mail 📧
           </button>
         </form>
       </div>
 
-      <!-- Info Périmètre & Habilitations (FORCÉS CÔTE À CÔTE AUSSI SUR MOBILE) -->
-      <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-        <div class="bg-card-blue p-4 sm:p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-          <div>
-            <h3 class="text-sm sm:text-lg font-bold text-hv-yellow mb-2">📍 Périmètre</h3>
-            <p class="text-[11px] sm:text-sm text-slate-300 leading-relaxed mb-3">
-              Zone de <strong>20 km</strong> autour de Mantes.
-            </p>
-            <div class="bg-slate-900 p-2.5 rounded-lg text-[10px] sm:text-xs text-slate-400 leading-relaxed">
-              • Mantes-la-Jolie / Ville<br>
-              • Limay, Gargenville<br>
-              • Épône, Rosny (20 km)
-            </div>
+      <!-- Info Périmètre & Habilitations -->
+      <div class="space-y-6">
+        <div class="bg-card-blue p-5 sm:p-6 rounded-2xl border border-slate-800">
+          <h3 class="text-sm sm:text-base font-bold text-hv-yellow mb-2">📍 Périmètre</h3>
+          <p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Intervention sur rendez-vous dans un rayon de <strong>20 km</strong> autour de Mantes.
+          </p>
+          <div class="bg-slate-900 p-3 rounded-lg text-xs text-slate-400 leading-relaxed">
+            • Mantes-la-Jolie / Ville<br>
+            • Limay, Gargenville, Épône<br>
+            • Aubergenville, Rosny-sur-Seine
           </div>
         </div>
 
-        <div class="bg-card-blue p-4 sm:p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-          <div>
-            <h3 class="text-sm sm:text-lg font-bold text-hv-yellow mb-2">⚡ Habilitations</h3>
-            <p class="text-[11px] sm:text-sm text-slate-300 leading-relaxed">
-              Norme <strong>NF C 18-550</strong> (B1VL / B2VL / B2XL / BCL).
-            </p>
-          </div>
+        <div class="bg-card-blue p-5 sm:p-6 rounded-2xl border border-slate-800">
+          <h3 class="text-sm sm:text-base font-bold text-hv-yellow mb-2">⚡ Habilitations</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Technicien habilité selon la norme <strong>NF C 18-550</strong> (B1VL / B2VL / B2XL / BCL).
+          </p>
         </div>
       </div>
 
@@ -139,33 +139,6 @@
   <footer class="bg-card-blue border-t border-slate-800 py-6 text-center text-xs text-slate-400">
     <p>© 2026 DiagVE.Mobile — Diagnostic & Expertise Haute Tension Mobile (Mantes 20 km)</p>
   </footer>
-
-  <!-- Script pour formater et envoyer les champs directement sur WhatsApp -->
-  <script>
-    function sendToWhatsApp(event) {
-      event.preventDefault();
-      
-      const phoneNumber = "33600000000"; // Remplace par ton vrai numéro
-      
-      const nom = document.getElementById("nom").value;
-      const telephone = document.getElementById("telephone").value;
-      const ville = document.getElementById("ville").value;
-      const vehicule = document.getElementById("vehicule").value;
-      const forfait = document.getElementById("forfait").value;
-      const message = document.getElementById("message").value;
-
-      const text = `Bonjour, je souhaite réserver une intervention sur DiagVE.Mobile :\n\n` +
-                   `👤 Nom : ${nom}\n` +
-                   `📞 Tel : ${telephone}\n` +
-                   `📍 Ville : ${ville}\n` +
-                   `🚗 Véhicule : ${vehicule}\n` +
-                   `📋 Forfait : ${forfait}\n` +
-                   `💬 Message : ${message}`;
-
-      const encodedText = encodeURIComponent(text);
-      window.open(`https://wa.me/${phoneNumber}?text=${encodedText}`, '_blank');
-    }
-  </script>
 
 </body>
 </html>
